@@ -1,0 +1,3 @@
+export enum ModelEvents {
+  RECENTLY_VIDEO_UPLOADED = 'RECENTLY_VIDEO_UPLOADED',
+}
