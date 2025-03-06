@@ -2,7 +2,7 @@ import { TrackingEvents } from '../events.enum';
 import { Event } from '../../../../libs/event.base';
 
 interface CreateTrackingEventPayload {
-  telegram_id: number;
+  user_id: number;
   tracking_id: string;
 }
 

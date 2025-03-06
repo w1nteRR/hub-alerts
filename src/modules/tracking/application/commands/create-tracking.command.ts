@@ -1,6 +1,3 @@
 export class CreateTrackingCommand {
-  constructor(
-    public readonly telegram_id: number,
-    public readonly tracking_id: string,
-  ) {}
+  constructor(public readonly user_id: number) {}
 }

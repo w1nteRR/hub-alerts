@@ -1,5 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { ConflictException, Inject } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { CreateTrackingCommand } from '../create-tracking.command';
 import { TRACKING_REPOSITORY } from '../../../tracking.di-tokens';
 import { ITrackingRepository } from '../../../domain/tracking.repository';
@@ -12,16 +13,18 @@ export class CreateTrackingCommandHandler
   constructor(
     @Inject(TRACKING_REPOSITORY)
     private readonly trackingRepository: ITrackingRepository,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
 
   async execute(command: CreateTrackingCommand): Promise<void> {
     const tracking = Tracking.create({
-      tracking_id: command.tracking_id,
-      telegram_id: command.telegram_id,
+      user_id: command.user_id,
     });
 
     try {
       await this.trackingRepository.save(tracking);
+
+      await tracking.publishEvents(this.eventEmitter);
     } catch (error) {
       if (error instanceof ConflictException) {
         throw new ConflictException(error.message);
