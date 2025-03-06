@@ -1,3 +1,3 @@
 export class RemoveTrackingCommand {
-  constructor(private readonly tracking_id: string) {}
+  constructor(public readonly tracking_id: string) {}
 }
