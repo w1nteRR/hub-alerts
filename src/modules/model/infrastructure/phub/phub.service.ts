@@ -8,7 +8,7 @@ export class PhubService {
   async getModel(name: string): Promise<ModelPage> {
     const model = await ph.model(name);
 
-    if (!model) {
+    if (!model.name) {
       throw new NotFoundException();
     }
 
