@@ -8,11 +8,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ModelModule } from './modules/model/model.module';
 import { BotModule } from './modules/telegraf/bot.module';
+import { FirestoreModule } from './database/firestore.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.development.env'],
+      envFilePath: ['.env.development'],
       isGlobal: true,
     }),
     EventEmitterModule.forRoot(),
@@ -31,6 +32,7 @@ import { BotModule } from './modules/telegraf/bot.module';
     }),
     BotModule,
     ModelModule,
+    FirestoreModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
