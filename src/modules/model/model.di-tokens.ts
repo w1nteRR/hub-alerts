@@ -1,1 +1,2 @@
 export const MODEL_REPOSITORY = Symbol('MODEL_REPOSITORY');
+export const MODEL_DB_REPOSITORY = Symbol('MODEL_DB_REPOSITORY');
